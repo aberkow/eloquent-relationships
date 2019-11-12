@@ -23,4 +23,8 @@ class Technique extends Model
     public function combinations() {
         return $this->belongsToMany(Combination::class)->withTimestamps();
     }
+
+    public function rank() {
+        return $this->morphMany('App\Rank', 'rankable');
+    }
 }

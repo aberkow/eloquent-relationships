@@ -37,6 +37,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    /**
+     * 
+     * A user has a single profile
+     * 
+     */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+
     /**
      * 
      * A user should have many combinations
@@ -52,5 +64,9 @@ class User extends Authenticatable
 
     public function techniques() {
         return $this->hasMany(Technique::class, 'owner_id');
+    }
+
+    public function rank() {
+        return $this->morphMany('App\Rank', 'rankable');
     }
 }
